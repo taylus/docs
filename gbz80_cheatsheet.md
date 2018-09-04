@@ -75,7 +75,7 @@ Is implemented as: "subtract a value from A, and based on how that affected the 
 ``` llvm
     cp $10  ; zero flag is set iff a == $10
     jr nz, .end_if                      ;-----+
-    ; code to execute iff a == $10      ;     |
+    ; code to execute iff a == $10            |
 .end_if     ;<--------------------------------+
 ```
 
@@ -86,7 +86,7 @@ Is implemented as: "subtract a value from A, and based on how that affected the 
 ``` llvm
     cp $05  ; carry flag is set iff a < $05
     jr nc, .end_if                      ;-----+
-    ; code to execute iff a < $05       ;     |
+    ; code to execute iff a < $05             |
 .end_if     ;<--------------------------------+
 ```
 
@@ -112,10 +112,10 @@ Z80 equivalent: "Use two overlapping sets of labels and jumps, each one to skip 
 ; (if a < $05)
     cp $05                                  ; carry flag is set iff a < $05
     jr nc, .else                            ; ----+
-    ; code to execute iff a < $05           ;     |
+    ; code to execute iff a < $05                 |
     jr .end_if                              ; ----|---+
 .else:                                      ; <---+   |
-    ; code to execute iff a >= $05          ;         |
+    ; code to execute iff a >= $05                    |
 .end_if:                                    ; <-------+
 ```
 
