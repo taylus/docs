@@ -70,10 +70,12 @@ if (condition is true) {
 
 Is implemented as: "subtract a value from A, and based on how that affected the CPU's flags register, conditionally jump somewhere."
 
+The `cp` instruction subtracts a value from A, doesn't store it in A, but sets the CPU's flags as if it did.
+
 ## If the `a` register == some 8-bit value (e.g. $10)
 
 ``` llvm
-    cp $10  ; zero flag is set iff a == $10
+    cp $10  ; zero flag is set iff a == $10 because $10 - $10 == 0
     jr nz, .end_if                      ;-----+
     ; code to execute iff a == $10            |
 .end_if     ;<--------------------------------+
@@ -84,7 +86,7 @@ Is implemented as: "subtract a value from A, and based on how that affected the 
 ## If the `a` register < some 8-bit value (e.g. $05)
 
 ``` llvm
-    cp $05  ; carry flag is set iff a < $05
+    cp $05  ; carry flag is set iff a < $05 because subtracting $05 from a smaller value causes a carry
     jr nc, .end_if                      ;-----+
     ; code to execute iff a < $05             |
 .end_if     ;<--------------------------------+
