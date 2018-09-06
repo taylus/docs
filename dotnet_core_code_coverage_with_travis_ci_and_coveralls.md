@@ -47,7 +47,7 @@ install:
 
 script:
  - dotnet build
- - dotnet test
+ - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
  - dotnet tool install --global coveralls.net --version 1.0.0
  - export PATH="$PATH:/home/travis/.dotnet/tools"
  - csmacnz.Coveralls --opencover -i /path/to/coverage.opencover.xml --useRelativePaths --commitId $TRAVIS_COMMIT --commitBranch $TRAVIS_BRANCH --commitAuthor "$REPO_COMMIT_AUTHOR" --commitEmail "$REPO_COMMIT_AUTHOR_EMAIL" --commitMessage "$REPO_COMMIT_MESSAGE" --jobId $TRAVIS_JOB_ID  --serviceName travis-ci
@@ -59,6 +59,6 @@ If everything works right your Travis CI build should succeed and you should see
 * http://tattoocoder.com/cross-platform-code-coverage-arrives-for-net-core/
 * https://medium.com/@tonerdo/setting-up-coveralls-with-coverlet-for-a-net-core-project-2c8ec6c5dc58
 * https://docs.coveralls.io/
-* https://github.com/csmacnz/coveralls.net\
+* https://github.com/csmacnz/coveralls.net
 * https://docs.travis-ci.com/user/coveralls/
 * https://docs.travis-ci.com/user/environment-variables/
